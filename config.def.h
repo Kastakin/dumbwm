@@ -1,7 +1,7 @@
 /* See LICENSE file for copyright and license details. */
 
 /* appearance */
-static const unsigned int borderpx       = 1;   /* border pixel of windows */
+static const unsigned int borderpx       = 2;   /* border pixel of windows */
 static const unsigned int snap           = 32;  /* snap pixel */
 static int nomodbuttons                  = 1;   /* allow client mouse button bindings that have no modifier */
 static const char autostartblocksh[]     = "autostart_blocking.sh";
@@ -15,20 +15,20 @@ static const int topbar                  = 1;   /* 0 means bottom bar */
 /*  Modes after showtab_nmodes are disabled.                                */
 enum showtab_modes { showtab_never, showtab_auto, showtab_nmodes, showtab_always};
 static const int showtab                 = showtab_auto;        /* Default tab bar show mode */
-static const int toptab                  = True;               /* False means bottom tab bar */
-static const int bar_height              = 0;   /* 0 means derive from font, >= 1 explicit height */
+static const int toptab                  = False;               /* False means bottom tab bar */
+static const int bar_height              = 25;   /* 0 means derive from font, >= 1 explicit height */
 /* Status is to be shown on: -1 (all monitors), 0 (a specific monitor by index), 'A' (active monitor) */
 static const int statusmon               = 0;
 static const int horizpadbar             = 2;   /* horizontal padding for statusbar */
-static const int vertpadbar              = 0;   /* vertical padding for statusbar */
+static const int vertpadbar              = 2;   /* vertical padding for statusbar */
 static const unsigned int systrayspacing = 2;   /* systray spacing */
 static const int showsystray             = 1;   /* 0 means no systray */
 /* Indicators: see patch/bar_indicators.h for options */
 static int tagindicatortype              = INDICATOR_NONE;
 static int tiledindicatortype            = INDICATOR_NONE;
 static int floatindicatortype            = INDICATOR_NONE;
-static const char *fonts[]               = { "monospace:size=10" };
-static const char dmenufont[]            = "monospace:size=10";
+static const char *fonts[]               = { "monospace:size=11" };
+static const char dmenufont[]            = "monospace:size=11";
 
 static char c000000[]                    = "#000000"; // placeholder value
 
@@ -119,7 +119,7 @@ static char *colors[][ColCount] = {
  * them. This works seamlessly with alternative tags and alttagsdecoration patches.
  */
 static char *tagicons[][NUMTAGS] = {
-	[DEFAULT_TAGS]        = { "1", "2", "3", "4", "5", "6", "7", "8", "9" },
+	[DEFAULT_TAGS]        = { " 1 ", " 2 ", " 3 ", " 4 ", " 5 ", " 6 ", " 7 ", " 8 ", " 9 " },
 	[ALTERNATIVE_TAGS]    = { "A", "B", "C", "D", "E", "F", "G", "H", "I" },
 	[ALT_TAGS_DECORATION] = { "<1>", "<2>", "<3>", "<4>", "<5>", "<6>", "<7>", "<8>", "<9>" },
 };
@@ -228,7 +228,7 @@ static const char *termcmd[]  = { "alacritty", NULL };
 static Key keys[] = {
 	/* modifier                     key            function                argument */
 	{ MODKEY,                       XK_d,          spawn,                  {.v = dmenucmd } },
-	{ MODKEY|ShiftMask,             XK_Return,     spawn,                  {.v = termcmd } },
+	{ MODKEY,                       XK_Return,     spawn,                  {.v = termcmd } },
 	{ MODKEY,                       XK_b,          togglebar,              {0} },
 	{ MODKEY|ControlMask,           XK_b,          tabmode,                {-1} },
 	{ MODKEY,                       XK_j,          focusstack,             {.i = +1 } },
@@ -239,7 +239,7 @@ static Key keys[] = {
 	{ MODKEY,                       XK_l,          setmfact,               {.f = +0.05} },
 	{ MODKEY,                       XK_Return,     zoom,                   {0} },
 	{ MODKEY,                       XK_Tab,        view,                   {0} },
-	{ MODKEY|ShiftMask,             XK_c,          killclient,             {0} },
+	{ MODKEY|ShiftMask,             XK_q,          killclient,             {0} },
 	{ MODKEY|ControlMask|ShiftMask, XK_r,          quit,                   {1} },
 	{ MODKEY|ControlMask|ShiftMask, XK_q,          quit,                   {0} },
 	{ MODKEY,                       XK_t,          setlayout,              {.v = &layouts[0]} },
@@ -276,8 +276,8 @@ static Button buttons[] = {
 	{ ClkStatusText,        0,                   Button1,        sigstatusbar,   {.i = 1 } },
 	{ ClkStatusText,        0,                   Button2,        sigstatusbar,   {.i = 2 } },
 	{ ClkStatusText,        0,                   Button3,        sigstatusbar,   {.i = 3 } },
-	{ ClkStatusText,        0,                   Button3,        sigstatusbar,   {.i = 4 } },
-	{ ClkStatusText,        0,                   Button3,        sigstatusbar,   {.i = 5 } },
+	{ ClkStatusText,        0,                   Button4,        sigstatusbar,   {.i = 4 } },
+	{ ClkStatusText,        0,                   Button5,        sigstatusbar,   {.i = 5 } },
 	{ ClkClientWin,         MODKEY,              Button1,        movemouse,      {0} },
 	{ ClkClientWin,         MODKEY,              Button2,        togglefloating, {0} },
 	{ ClkClientWin,         MODKEY,              Button3,        resizemouse,    {0} },
