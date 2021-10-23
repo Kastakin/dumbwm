@@ -19,7 +19,7 @@
 #ifdef XINERAMA
 #include "sortscreens.c"
 #endif // XINERAMA
-#include "tab.c"
+#include "vanitygaps.c"
 /* Layouts */
 #include "layout_facts.c"
 #include "layout_gapplessgrid.c"
