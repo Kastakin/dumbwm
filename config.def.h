@@ -26,7 +26,7 @@ static const int showsystray             = 1;   /* 0 means no systray */
 static int tagindicatortype              = INDICATOR_NONE;
 static int tiledindicatortype            = INDICATOR_NONE;
 static int floatindicatortype            = INDICATOR_NONE;
-static const char *fonts[]               = { "SauceCodePro Nerd Font Mono:style=Medium:size=11" };
+static const char *fonts[]               = { "SauceCodePro Nerd Font Mono:style=Medium:size=12" };
 static const char dmenufont[]            = "monospace:size=11";
 
 static char c000000[]                    = "#000000"; // placeholder value
@@ -118,11 +118,10 @@ static char *colors[][ColCount] = {
  * them. This works seamlessly with alternative tags and alttagsdecoration patches.
  */
 static char *tagicons[][NUMTAGS] = {
-	[DEFAULT_TAGS]        = { " 1 ", " 2 ", " 3 ", " 4 ", " 5 ", " 6 ", " 7 ", " 8 ", " 9 " },
+	[DEFAULT_TAGS]        = { "", "", "", "", "", "", "", "", "" },
 	[ALTERNATIVE_TAGS]    = { "A", "B", "C", "D", "E", "F", "G", "H", "I" },
-	[ALT_TAGS_DECORATION] = { "<1>", "<2>", "<3>", "<4>", "<5>", "<6>", "<7>", "<8>", "<9>" },
+	[ALT_TAGS_DECORATION] = { "", "", "", "", "", "", "", "", "" },
 };
-
 
 /* There are two options when it comes to per-client rules:
  *  - a typical struct table or
