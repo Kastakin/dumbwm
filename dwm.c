@@ -1679,6 +1679,8 @@ propertynotify(XEvent *e)
 void
 quit(const Arg *arg)
 {
+    // Stop dwmblocks from running
+    system("killall -9 dwmblocks");
 	if (arg->i)
 		restart = 1;
 	running = 0;

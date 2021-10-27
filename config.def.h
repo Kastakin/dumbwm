@@ -6,7 +6,7 @@ static const unsigned int snap           = 32;  /* snap pixel */
 static int nomodbuttons                  = 1;   /* allow client mouse button bindings that have no modifier */
 static const unsigned int gappih         = 5;  /* horiz inner gap between windows */
 static const unsigned int gappiv         = 5;  /* vert inner gap between windows */
-static const unsigned int gappoh         = 5;  /* horiz outer gap between windows and screen edge */
+static const unsigned int gappoh         = 2;  /* horiz outer gap between windows and screen edge */
 static const unsigned int gappov         = 2;  /* vert outer gap between windows and screen edge */
 static const int smartgaps_fact          = 0;   /* gap factor when there is only one client; 0 = no gaps, 3 = 3x outer gaps */
 static const char autostartblocksh[]     = "autostart_blocking.sh";
@@ -26,7 +26,7 @@ static const int showsystray             = 1;   /* 0 means no systray */
 static int tagindicatortype              = INDICATOR_NONE;
 static int tiledindicatortype            = INDICATOR_NONE;
 static int floatindicatortype            = INDICATOR_NONE;
-static const char *fonts[]               = { "SauceCodePro Nerd Font Mono:style=Medium:size=12" };
+static const char *fonts[]               = { "JetBrainsMono Nerd Font:style=Medium:size=10" };
 static const char dmenufont[]            = "monospace:size=11";
 
 static char c000000[]                    = "#000000"; // placeholder value
@@ -196,6 +196,7 @@ static const Layout layouts[] = {
 
 
 /* key definitions */
+#include <X11/XF86keysym.h>
 #define MODKEY Mod4Mask
 #define TAGKEYS(KEY,TAG) \
 	{ MODKEY,                       KEY,      view,           {.ui = 1 << TAG} }, \
@@ -219,6 +220,13 @@ static const char *dmenucmd[] = {
 	NULL
 };
 static const char *termcmd[]  = { "alacritty", NULL };
+// Volume controls
+static const char *volmute[] = {"pactl", "set-sink-mute", "0", "toggle", NULL};
+static const char *volup[] = {"pactl", "set-sink-volume", "0", "+5%", NULL};
+static const char *voldown[] = {"pactl", "set-sink-volume", "0", "-5%", NULL};
+// Brightness controls
+static const char *brightup[] = {"light", "-A", "5", NULL};
+static const char *brightdown[] = {"light", "-U", "5", NULL};
 
 /* This defines the name of the executable that handles the bar (used for signalling purposes) */
 #define STATUSBAR "dwmblocks"
@@ -228,6 +236,11 @@ static Key keys[] = {
 	/* modifier                     key            function                argument */
 	{ MODKEY,                       XK_d,          spawn,                  {.v = dmenucmd } },
 	{ MODKEY,                       XK_Return,     spawn,                  {.v = termcmd } },
+	{ 0,                            XF86XK_AudioMute,         spawn,       {.v = volmute } },
+	{ 0,                            XF86XK_AudioRaiseVolume,         spawn,       {.v = volup } },
+	{ 0,                            XF86XK_AudioLowerVolume,         spawn,       {.v = voldown } },
+	{ 0,                            XF86XK_MonBrightnessUp,         spawn,       {.v = brightup } },
+	{ 0,                            XF86XK_MonBrightnessDown,         spawn,       {.v = brightdown } },
 	{ MODKEY,                       XK_b,          togglebar,              {0} },
 	{ MODKEY,                       XK_j,          focusstack,             {.i = +1 } },
 	{ MODKEY,                       XK_k,          focusstack,             {.i = -1 } },
