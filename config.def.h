@@ -71,8 +71,6 @@ static char urgbgcolor[]                 = "#222222";
 static char urgbordercolor[]             = "#ff0000";
 static char urgfloatcolor[]              = "#db8fd9";
 
-
-
 static char *colors[][ColCount] = {
 	/*                       fg                bg                border                float */
 	[SchemeNorm]         = { normfgcolor,      normbgcolor,      normbordercolor,      normfloatcolor },
@@ -85,10 +83,6 @@ static char *colors[][ColCount] = {
 	[SchemeHidSel]       = { hidselfgcolor,    hidselbgcolor,    c000000,              c000000 },
 	[SchemeUrg]          = { urgfgcolor,       urgbgcolor,       urgbordercolor,       urgfloatcolor },
 };
-
-
-
-
 
 /* Tags
  * In a traditional dwm the number of tags in use can be changed simply by changing the number
@@ -219,6 +213,9 @@ static const char *dmenucmd[] = {
 	"-sf", selfgcolor,
 	NULL
 };
+// Rofi commands
+static const char *rofidrun[] = { "rofi", "-show", "drun", NULL };
+// Terminal spawn
 static const char *termcmd[]  = { "alacritty", NULL };
 // Volume controls
 static const char *volmute[] = {"pactl", "set-sink-mute", "0", "toggle", NULL};
@@ -234,7 +231,7 @@ static const char *brightdown[] = {"light", "-U", "5", NULL};
 
 static Key keys[] = {
 	/* modifier                     key            function                argument */
-	{ MODKEY,                       XK_d,          spawn,                  {.v = dmenucmd } },
+	{ MODKEY,                       XK_d,          spawn,                  {.v = rofidrun } },
 	{ MODKEY,                       XK_Return,     spawn,                  {.v = termcmd } },
 	{ 0,                            XF86XK_AudioMute,         spawn,       {.v = volmute } },
 	{ 0,                            XF86XK_AudioRaiseVolume,         spawn,       {.v = volup } },
