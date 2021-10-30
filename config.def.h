@@ -215,6 +215,7 @@ static const char *dmenucmd[] = {
 };
 // Rofi commands
 static const char *rofidrun[] = { "rofi", "-show", "drun", NULL };
+static const char *rofiswitcher[] = { "rofi", "-show", "window", NULL };
 // Terminal spawn
 static const char *termcmd[]  = { "alacritty", NULL };
 // Volume controls
@@ -232,6 +233,7 @@ static const char *brightdown[] = {"light", "-U", "5", NULL};
 static Key keys[] = {
 	/* modifier                     key            function                argument */
 	{ MODKEY,                       XK_d,          spawn,                  {.v = rofidrun } },
+	{ Mod1Mask,                     XK_Tab,        spawn,                  {.v = rofiswitcher } },
 	{ MODKEY,                       XK_Return,     spawn,                  {.v = termcmd } },
 	{ 0,                            XF86XK_AudioMute,         spawn,       {.v = volmute } },
 	{ 0,                            XF86XK_AudioRaiseVolume,         spawn,       {.v = volup } },
